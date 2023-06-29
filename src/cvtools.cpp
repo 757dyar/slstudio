@@ -11,6 +11,8 @@ namespace cvtools{
 // Phase correlation image registration including scale, rotation and translational shift
 void phaseCorrelate(const cv::Mat &im1, const cv::Mat &im2, float &scale, float &angle, cv::Point2f &shift){
 
+//test message for verification
+
     assert(im1.size() == im2.size());
     assert(im1.type() == im2.type());
 
