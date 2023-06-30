@@ -13,3 +13,7 @@ Path:
 4. /src/camera
 5. /src/camera
 6. /src/camera
+
+Hardware
+Camera:     MV-CA050-20UM
+Projector:  DLP Light Crafter 4500
