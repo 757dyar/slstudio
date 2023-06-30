@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "MvCameraControl.h"
+#include "/opt/MVS/include/MvCameraControl.h"
 
 #define NIL (0) 
 
