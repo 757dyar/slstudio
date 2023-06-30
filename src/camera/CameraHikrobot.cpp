@@ -1,12 +1,13 @@
-#include "CameraXIMEA.h"
+#include "CameraHikrobot.h"
 #include <cstdio>
 
 // Note: library headers conflict with IDS imaging headers
 #include <xiApi.h>
+#include "/opt/MVS/include/MvCameraControl.h"
 
-#define HandleResult(res,place) if (res!=XI_OK) {printf("CameraXIMEA: Error at %s (%d)\n",place,res); fflush(stdout);}
+#define HandleResult(res,place) if (res!=XI_OK) {printf("CameraHikrobot: Error at %s (%d)\n",place,res); fflush(stdout);}
 
-std::vector<CameraInfo> CameraXIMEA::getCameraList(){
+std::vector<CameraInfo> CameraHikrobot::getCameraList(){
 
     XI_RETURN stat = XI_OK;
     DWORD numCams;
@@ -26,7 +27,7 @@ std::vector<CameraInfo> CameraXIMEA::getCameraList(){
     return ret;
 }
 
-CameraXIMEA::CameraXIMEA(unsigned int camNum, CameraTriggerMode triggerMode) : Camera(triggerMode), camera(NULL){
+CameraHikrobot::CameraHikrobot(unsigned int camNum, CameraTriggerMode triggerMode) : Camera(triggerMode), camera(NULL){
 
     // Set debugging level
     xiSetParamInt(0, XI_PRM_DEBUG_LEVEL, XI_DL_FATAL);
@@ -91,7 +92,7 @@ CameraXIMEA::CameraXIMEA(unsigned int camNum, CameraTriggerMode triggerMode) : C
 
 }
 
-CameraSettings CameraXIMEA::getCameraSettings(){
+CameraSettings CameraHikrobot::getCameraSettings(){
 
     CameraSettings settings;
 
@@ -103,7 +104,7 @@ CameraSettings CameraXIMEA::getCameraSettings(){
     return settings;
 }
 
-void CameraXIMEA::setCameraSettings(CameraSettings settings){
+void CameraHikrobot::setCameraSettings(CameraSettings settings){
 
     // Set shutter (in us)
     xiSetParamInt(camera, XI_PRM_EXPOSURE, settings.shutter*1000);
@@ -115,7 +116,7 @@ void CameraXIMEA::setCameraSettings(CameraSettings settings){
               << "Gain: " << settings.gain << " dB" << std::endl;
 }
 
-void CameraXIMEA::startCapture(){
+void CameraHikrobot::startCapture(){
 
     if(triggerMode == triggerModeHardware){
         xiSetParamInt(camera, XI_PRM_ACQ_TIMING_MODE, XI_ACQ_TIMING_MODE_FREE_RUN);
@@ -142,16 +143,16 @@ void CameraXIMEA::startCapture(){
 
 }
 
-void CameraXIMEA::stopCapture(){
+void CameraHikrobot::stopCapture(){
 
     if(!capturing){
-        std::cerr << "CameraXIMEA: not capturing!" << std::endl;
+        std::cerr << "CameraHikrobot: not capturing!" << std::endl;
         return;
     }
 
 }
 
-CameraFrame CameraXIMEA::getFrame(){
+CameraFrame CameraHikrobot::getFrame(){
 
     // Create single image buffer
     XI_IMG image;
@@ -196,25 +197,25 @@ CameraFrame CameraXIMEA::getFrame(){
 }
 
 
-size_t CameraXIMEA::getFrameSizeBytes(){
+size_t CameraHikrobot::getFrameSizeBytes(){
     return 0;
 }
 
-size_t CameraXIMEA::getFrameWidth(){
+size_t CameraHikrobot::getFrameWidth(){
     int w;
     xiGetParamInt(camera, XI_PRM_WIDTH, &w);
 
     return w;
 }
 
-size_t CameraXIMEA::getFrameHeight(){
+size_t CameraHikrobot::getFrameHeight(){
     int h;
     xiGetParamInt(camera, XI_PRM_HEIGHT, &h);
 
     return h;
 }
 
-CameraXIMEA::~CameraXIMEA(){
+CameraHikrobot::~CameraHikrobot(){
 
     if(capturing){
         // Stop acquisition

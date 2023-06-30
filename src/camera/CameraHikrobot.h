@@ -1,17 +1,19 @@
-#ifndef CAMERAXIMEA_H
-#define CAMERAXIMEA_H
+#ifndef CAMERAHIKROBOT_H
+#define CAMERAHIKROBOT_H
 
 #include "Camera.h"
 
+////////////////////////////////////////// For later change
 // XIMEA specific type
 typedef void* HANDLE;
+//////////////////////////////////////////
 
-class CameraXIMEA : public Camera {
+class CameraHikrobot : public Camera {
     public:
         // Static methods
         static std::vector<CameraInfo> getCameraList();
         // Interface function
-        CameraXIMEA(unsigned int camNum, CameraTriggerMode triggerMode);
+        CameraHikrobot(unsigned int camNum, CameraTriggerMode triggerMode);
         CameraSettings getCameraSettings();
         void setCameraSettings(CameraSettings);
         void startCapture();
@@ -20,10 +22,10 @@ class CameraXIMEA : public Camera {
         size_t getFrameSizeBytes();
         size_t getFrameWidth();
         size_t getFrameHeight();
-        ~CameraXIMEA();
+        ~CameraHikrobot();
     private:
         HANDLE camera;
         int stat;
 };
 
-#endif // CAMERAXIMEA_H
+#endif // CAMERAHIKROBOT_H
