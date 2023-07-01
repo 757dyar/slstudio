@@ -236,7 +236,7 @@ CameraHikrobot::CameraHikrobot(unsigned int camNum, CameraTriggerMode triggerMod
     }
 
     // ch:设置触发模式为off | en:Set trigger mode as off
-    nRet = MV_CC_SetEnumValue(handle, "TriggerMode", 1);
+    nRet = MV_CC_SetEnumValue(handle, "TriggerMode", 0);
     if (MV_OK != nRet)
     {
         printf("Set Trigger Mode fail! nRet [0x%x]\n", nRet);
