@@ -15,5 +15,8 @@ Path:
 6. /src/camera
 
 Hardware
-Camera:     MV-CA050-20UM
+Camera:     MV-CA050-20UM   (Hikrobot)
 Projector:  DLP Light Crafter 4500
+
+Development remark:
+- The codes assumed only 1 single Hikrobot camera is connected to the PC. (i.e. Camera[0])
