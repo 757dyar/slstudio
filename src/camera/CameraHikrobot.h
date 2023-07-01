@@ -26,6 +26,12 @@ class CameraHikrobot : public Camera {
     private:
         HANDLE camera;
         int stat;
+
+        bool g_bExit;
+        unsigned int g_nPayloadSize;
+        int nRet;
+        void* handle;
+
 };
 
 #endif // CAMERAHIKROBOT_H
