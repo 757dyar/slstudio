@@ -56,6 +56,12 @@ unix:!macx {
         DEFINES += WITH_CAMERAXIMEA
         LIBS += -lm3api
     }
+    exists(/opt/MVS/include/MvCameraControl.h){
+        INCLUDEPATH += /opt/MVS/include
+        DEFINES += WITH_CAMERAHIKROBOT
+        LIBS += -L/opt/MVS/lib/ -libMvCameraControl
+    }
+
 }
 
 macx {
@@ -76,7 +82,7 @@ macx {
 # libdc1394
 contains(DEFINES, WITH_CAMERAIIDC) {
     HEADERS += CameraIIDC.h
-    SOURCES +=CameraIIDC.cpp
+    SOURCES += CameraIIDC.cpp
 }
 # libueye
 contains(DEFINES, WITH_CAMERAIDSIMAGING) {
@@ -87,4 +93,9 @@ contains(DEFINES, WITH_CAMERAIDSIMAGING) {
 contains(DEFINES, WITH_CAMERAXIMEA) {
     HEADERS += CameraXIMEA.h
     SOURCES += CameraXIMEA.cpp
+}
+# libMvCameraControl
+contains(DEFINES, WITH_CAMERAHIKROBOT) {
+    HEADERS += CameraHikrobot.h
+    SOURCES += CameraHikrobot.cpp
 }
