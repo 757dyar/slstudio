@@ -3,7 +3,7 @@
 
 // Note: library headers conflict with IDS imaging headers
 #include <xiApi.h>
-#include "/opt/MVS/include/MvCameraControl.h"
+#include <MvCameraControl.h>
 
 
 #define HandleResult(res,place) if (res!=XI_OK) {printf("CameraHikrobot: Error at %s (%d)\n",place,res); fflush(stdout);}

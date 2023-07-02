@@ -350,6 +350,16 @@ contains(DEFINES, WITH_CAMERAPOINTGREY) {
     HEADERS += camera/CameraPointGrey.h
     SOURCES += camera/CameraPointGrey.cpp
 }
+# Hikrobot libmvcameracontrol
+unix:!macx:exists(/opt/MVS/include/MvCameraControl.h){
+    INCLUDEPATH += /opt/MVS/include
+    DEFINES += WITH_CAMERAHIKROBOT
+    LIBS += -L/opt/MVS/lib/ -libMvCameraControl
+}
+contains(DEFINES, WITH_CAMERAHIKROBOT) {
+    HEADERS += camera/CameraHikrobot.h
+    SOURCES += camera/CameraHikrobot.cpp
+}
 
 
 # Compile with direct projector APIs
